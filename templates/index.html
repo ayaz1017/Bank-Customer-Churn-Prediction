@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Customer Churn Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 500px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            padding: 40px;
+            animation: fadeInDown 1s ease;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4b00ff;
+            font-weight: 700;
+        }
+
+        .btn {
+            width: 100%;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .alert {
+            font-weight: 600;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="card animate__animated animate__fadeInDown">
+        <h2>Bank Customer Churn Prediction</h2>
+
+        {% if error %}
+            <div class="alert alert-danger animate__animated animate__shakeX">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="form-select" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Geography</label>
+                <select class="form-select" name="geography" required>
+                    <option value="">Select Country</option>
+                    <option value="France">France</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Germany">Germany</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Has Credit Card (1/0)</label>
+                <input type="number" class="form-control" name="has_cr_card" min="0" max="1" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Is Active Member (1/0)</label>
+                <input type="number" class="form-control" name="is_active_member" min="0" max="1" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Credit Score</label>
+                <input type="number" class="form-control" name="credit_score" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Age</label>
+                <input type="number" class="form-control" name="age" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tenure</label>
+                <input type="number" class="form-control" name="tenure" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Balance</label>
+                <input type="number" class="form-control" name="balance" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Number of Products</label>
+                <input type="number" class="form-control" name="num_of_products" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Estimated Salary</label>
+                <input type="number" class="form-control" name="estimated_salary" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="alert alert-info mt-3 animate__animated animate__fadeInUp">
+                {{ prediction }}
+            </div>
+        {% endif %}
+
+        <div class="footer-text">Powered by Flask & Machine Learning</div>
+    </div>
+</body>
+</html>
